@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 2.8)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 CONAN_BASIC_SETUP()
 
+set(CMAKE_MACOSX_RPATH ON)
+set(BUILD_WITH_INSTALL_RPATH ON)
+
 find_package(Blosc REQUIRED)
 
 ADD_EXECUTABLE(testPackage main.cpp)
