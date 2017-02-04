@@ -55,6 +55,8 @@ class BloscConan(ConanFile):
                          , cmake_bool_flag("PREFER_EXTERNAL_SNAPPY", False)
                          , cmake_bool_flag("PREFER_EXTERNAL_ZLIB", False)
                          , cmake_bool_flag("PREFER_EXTERNAL_ZSTD", False)
+                         , cmake_bool_flag("CMAKE_MACOSX_RPATH", True)
+                         , cmake_bool_flag("BUILD_WITH_INSTALL_RPATH", True)
                          , cmake_path_flag("CMAKE_INSTALL_PREFIX", self.package_folder)
                          ]
         if "fPIC" in self.options.fields:
