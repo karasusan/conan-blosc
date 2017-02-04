@@ -17,7 +17,7 @@ index af93a5e..2d200e3 100644
      install(FILES blosc.h blosc-export.h DESTINATION include COMPONENT DEV)
 -    install(TARGETS blosc_shared DESTINATION ${lib_dir} COMPONENT LIB)
 +    if(BUILD_SHARED)
-+        install(TARGETS blosc_shared RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib COMPONENT LIB)
++        install(TARGETS blosc_shared DESTINATION lib RUNTIME DESTINATION bin COMPONENT LIB)
 +    endif(BUILD_SHARED)
      if(BUILD_STATIC)
          install(TARGETS blosc_static DESTINATION ${lib_dir} COMPONENT DEV)
