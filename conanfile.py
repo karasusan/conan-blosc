@@ -30,7 +30,7 @@ class BloscConan(ConanFile):
               }
     default_options = "shared=False", "fPIC=False"
     exports = ["FindBlosc.cmake", "fix-shared-lib-install.patch"]
-    
+
     def config_options(self):
         if self.settings.os == "Windows":
             self.options.remove("fPIC")
