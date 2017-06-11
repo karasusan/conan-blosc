@@ -3,20 +3,6 @@ from conans import CMake, ConanFile
 from conans.tools import replace_in_file
 
 
-def cmake_flag(name, type, value_str):
-    return str.format("-D{}:{}={}", name, type, value_str)
-
-
-def cmake_bool_flag(name, bool_value):
-    cmake_bool_string = "ON" if bool_value else "OFF"
-    return cmake_flag(name, "BOOL", cmake_bool_string)
-
-
-def cmake_path_flag(name, path_str):
-    path_with_quotes = '"' + path_str + '"'
-    return cmake_flag(name, "PATH", path_with_quotes)
-
-
 class BloscConan(ConanFile):
     description = "A blocking, shuffling and lossless compression library"
     name = "blosc"
@@ -46,24 +32,23 @@ class BloscConan(ConanFile):
                         "project(blosc)\ninclude(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)\nconan_basic_setup()")
 
     def build(self):
-        cmake = CMake(self.settings)
-        cmake_arg_list = [ cmake.command_line
-                         , cmake_bool_flag("BUILD_SHARED", self.options.shared)
-                         , cmake_bool_flag("BUILD_STATIC", not self.options.shared)
-                         , cmake_bool_flag("BUILD_TESTS", False)
-                         , cmake_bool_flag("BUILD_BENCHMARKS", False)
-                         , cmake_bool_flag("PREFER_EXTERNAL_LZ4", False)
-                         , cmake_bool_flag("PREFER_EXTERNAL_SNAPPY", False)
-                         , cmake_bool_flag("PREFER_EXTERNAL_ZLIB", False)
-                         , cmake_bool_flag("PREFER_EXTERNAL_ZSTD", False)
-                         , cmake_path_flag("CMAKE_INSTALL_PREFIX", self.package_folder)
-                         ]
+        cmake = CMake(self)
+        cmake.definitions.update(
+            { "BUILD_SHARED": self.options.shared
+            , "BUILD_STATIC": not self.options.shared
+            , "BUILD_TESTS": False
+            , "BUILD_BENCHMARKS": False
+            , "PREFER_EXTERNAL_LZ4": False
+            , "PREFER_EXTERNAL_SNAPPY": False
+            , "PREFER_EXTERNAL_ZLIB": False
+            , "PREFER_EXTERNAL_ZSTD": False
+            , "CMAKE_INSTALL_PREFIX": self.package_folder
+            })
         if "fPIC" in self.options.fields:
-            cmake_arg_list.append(cmake_bool_flag("CMAKE_POSITION_INDEPENDENT_CODE", self.options.fPIC))
+            cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.fPIC
 
-        cmake_args = " ".join(cmake_arg_list)
-        self.run("cmake ./src %s" % cmake_args)
-        self.run("cmake --build . --target install --config %s" % self.settings.build_type)
+        cmake.configure(source_dir="src")
+        cmake.build(target="install")
 
     def package(self):
         self.copy("FindBlosc.cmake", ".", ".")
