@@ -1,4 +1,3 @@
-import os
 from conans import CMake, ConanFile
 from conans.tools import replace_in_file
 
