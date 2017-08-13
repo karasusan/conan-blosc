@@ -25,7 +25,8 @@ class BloscConan(ConanFile):
             self.options.fPIC = True
 
     def source(self):
-        self.run("git clone https://github.com/Blosc/c-blosc -c advice.detachedHead=false -b v%s src" % self.version)
+        self.run("git clone https://github.com/Blosc/c-blosc src")
+        self.run("cd src && git checkout v%s" % self.version)
         self.run("cd src && git apply ../fix-shared-lib-install.patch")
         replace_in_file("src/CMakeLists.txt", "project(blosc)",
                         "project(blosc)\ninclude(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)\nconan_basic_setup()")
