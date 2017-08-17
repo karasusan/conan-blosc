@@ -21,7 +21,7 @@ class BloscConan(ConanFile):
             self.options.remove("fPIC")
 
     def config(self):
-        if self.options.shared and ("fPIC" in self.options.fields):
+        if self.options.shared and "fPIC" in self.options.fields:
             self.options.fPIC = True
 
     def source(self):
