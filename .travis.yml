@@ -5,7 +5,7 @@ env:
      - CONAN_USERNAME: "zogi"
      - CONAN_LOGIN_USERNAME: "zogi"
      - CONAN_CHANNEL: "stable"
-     - CONAN_UPLOAD: "https://github.com/zogi/conan-blosc"
+     - CONAN_UPLOAD: "https://api.bintray.com/conan/zogi/conan-packages"
 
 linux: &linux
    os: linux
