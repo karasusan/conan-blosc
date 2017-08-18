@@ -49,10 +49,10 @@ class BloscConan(ConanFile):
 
         cmake.configure(source_dir="src")
         cmake.build(target="install")
-        self.copy("*.txt", src="src/LICENSES", dst="licenses")
 
     def package(self):
         self.copy("FindBlosc.cmake", ".", ".")
+        self.copy("*.txt", src="src/LICENSES", dst="licenses")
 
     def package_info(self):
         prefix = "lib" if self.settings.os == "Windows" and not self.options.shared else ""
