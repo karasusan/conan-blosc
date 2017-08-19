@@ -20,7 +20,7 @@ class BloscConan(ConanFile):
         if self.settings.os == "Windows":
             self.options.remove("fPIC")
 
-    def config(self):
+    def configure(self):
         if self.options.shared and "fPIC" in self.options.fields:
             self.options.fPIC = True
 
