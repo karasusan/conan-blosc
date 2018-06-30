@@ -2,10 +2,10 @@
 env:
    global:
      - CONAN_REFERENCE: "blosc/1.11.2"
-     - CONAN_USERNAME: "zogi"
-     - CONAN_LOGIN_USERNAME: "zogi"
+     - CONAN_USERNAME: "kazuki"
+     - CONAN_LOGIN_USERNAME: "kazuki"
      - CONAN_CHANNEL: "stable"
-     - CONAN_UPLOAD: "https://api.bintray.com/conan/zogi/conan-packages"
+     - CONAN_UPLOAD: "https://api.bintray.com/conan/kazuki/conan"
 
 linux: &linux
    os: linux
@@ -46,6 +46,10 @@ matrix:
       - <<: *osx
         osx_image: xcode8.3
         env: CONAN_APPLE_CLANG_VERSIONS=8.1
+
+      - <<: *osx
+        osx_image: xcode9
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0
 
 install:
   - chmod +x .travis/install.sh
