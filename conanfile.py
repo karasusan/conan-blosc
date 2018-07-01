@@ -59,3 +59,5 @@ class BloscConan(ConanFile):
         self.cpp_info.libs.append(prefix + "blosc")
         if self.settings.os == "Windows" and self.options.shared:
             self.cpp_info.defines.append("BLOSC_SHARED_LIBRARY")
+        if not self.options.shared and self.settings.os != "Windows":
+            self.cpp_info.libs.extend(["pthread"])
