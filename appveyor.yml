@@ -6,11 +6,11 @@ environment:
     PYTHON_ARCH: "32"
 
     CONAN_REFERENCE: "blosc/1.11.2"
-    CONAN_USERNAME: "zogi"
-    CONAN_LOGIN_USERNAME: "zogi"
+    CONAN_USERNAME: "kazuki"
+    CONAN_LOGIN_USERNAME: "kazuki"
     CONAN_CHANNEL: "stable"
     VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
-    CONAN_UPLOAD: "https://api.bintray.com/conan/zogi/conan-packages"
+    CONAN_UPLOAD: "https://api.bintray.com/conan/karasusan/conan"
 
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
