@@ -7,7 +7,7 @@ class BloscConan(ConanFile):
     name = "blosc"
     version = "1.11.2"
     license = "BSD"
-    url = "https://github.com/zogi/conan-blosc.git"
+    url = "https://github.com/karasusan/conan-blosc"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = { "shared": [True, False]
