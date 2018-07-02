@@ -13,7 +13,7 @@ class BloscConan(ConanFile):
     options = { "shared": [True, False]
               , "fPIC": [True, False]
               }
-    default_options = "fPIC=True"
+    default_options = "shared=False", "fPIC=True"
     exports = ["FindBlosc.cmake", "fix-shared-lib-install.patch"]
 
     def config_options(self):
