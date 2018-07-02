@@ -26,7 +26,7 @@ foreach (INCLUDE_DIR ${BLOSC_INCLUDE_DIRS})
 endforeach()
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(IlmBase
+find_package_handle_standard_args( Blosc
     REQUIRED_VARS
         BLOSC_INCLUDE_DIRS
         BLOSC_LIBRARIES
